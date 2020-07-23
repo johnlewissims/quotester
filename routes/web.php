@@ -4,5 +4,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/get-quotes', 'QuoteController@getQuotes');
-Route::get('/set-quotes', 'QuoteController@setQuotes');
+Route::prefix('quotes')->group(function () {
+    Route::get('/', 'QuoteController@getQuotes');
+    Route::get('/set', 'QuoteController@setQuotes');
+    Route::get('/quotd', 'QuoteController@quotd');
+});

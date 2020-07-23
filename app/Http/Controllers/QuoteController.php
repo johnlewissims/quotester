@@ -3,32 +3,63 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 
 use App\Services\Quote;
 
 class QuoteController extends Controller
 {
 
+    /**
+     * Return Home Page of Application
+     *
+     * @return view
+     */
     public function index()
     {
         return view('home');
     }
 
+    /**
+     * Get Array of All Quotes
+     *
+     * @return array
+     */
     public function getQuotes()
     {
         return (new Quote())->getQuotes();
     } 
 
-    public function setQuotes()
+    /**
+     * Replace Array of Quotes in Config with New Array of Quotes
+     * Dummy Array Provided for Testing
+     * 
+     * @param  Request $request
+     * @return array
+     */
+    public function setQuotes(Request $request)
     {
-        $replacements = 
+        //$replacement = $request->replacement;
+
+        $replacement = 
         [
-            6 => [
+            0 => [
                 "author" => "Mark Gibbs",
                 "quote" => "No matter how slick the demo is in rehearsal, when you do it in front of a live audience, the probability of a flawless presentation is inversely proportional to the number of people watching, raised to the power of the amount of money involved.",
             ]            
         ];
 
-        return (new Quote())->setQuotes($replacements);
+        return (new Quote())->setQuotes($replacement);
     }
+
+    /**
+     * Return Quote of the Day
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function quotd(Request $request)
+    {
+        return (new Quote())->quotd(date('Y-m-d', strtotime($request->query('d'))));
+    } 
 }
