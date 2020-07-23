@@ -166,8 +166,4 @@ return
         "author" => "Craig Bruce",
         "quote" => "It’s hardware that makes a machine fast.  It’s software that makes a fast machine slow.",
     ],
-    40 => [
-        "author" => "Socrates",
-        "quote" => "The more you know, the more you realize you know nothing.",
-    ],
 ];

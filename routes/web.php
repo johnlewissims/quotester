@@ -6,6 +6,7 @@ Route::get('/', function () {
 
 Route::prefix('quotes')->group(function () {
     Route::get('/', 'QuoteController@getQuotes');
-    Route::get('/set', 'QuoteController@setQuotes');
+    Route::post('/set', 'QuoteController@setQuotes');
     Route::get('/quotd', 'QuoteController@quotd');
+    Route::get('/random', 'QuoteController@random');
 });

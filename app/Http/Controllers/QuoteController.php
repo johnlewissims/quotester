@@ -62,4 +62,15 @@ class QuoteController extends Controller
     {
         return (new Quote())->quotd(date('Y-m-d', strtotime($request->query('d'))));
     } 
+
+    /**
+     * Return Quote of the Day
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function random(Request $request)
+    {
+        return (new Quote())->random(strval($request->session()->has('unread_quotes')));
+    } 
 }
