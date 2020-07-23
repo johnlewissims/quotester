@@ -57,7 +57,7 @@ class Quote
     }
 
     /**
-     * Return Random Quote 
+     * Returns Random Quotes
      * 
      * @param $session
      */
@@ -87,5 +87,19 @@ class Quote
         return $selectedQuote;
         
     }
+
+    /**
+     * Return Array of Quotes that Match Search Term
+     * 
+     * @param $session
+     */
+    public function search($word) {
+        // Filters Array by Search Term
+        // If String is Found in Either Author or Quote
+        $filteredArray = array_filter($this->quotes, function ($var) use ($word) {
+            return (stripos($var['quote'], $word) !== false || stripos($var['author'], $word) !== false);
+        });
+        return $filteredArray;
+    }   
 
 }

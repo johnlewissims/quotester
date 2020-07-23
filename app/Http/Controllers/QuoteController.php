@@ -64,7 +64,7 @@ class QuoteController extends Controller
     } 
 
     /**
-     * Return Quote of the Day
+     * Return Random Quote
      *
      * @param  Request $request
      * @return array
@@ -72,5 +72,16 @@ class QuoteController extends Controller
     public function random(Request $request)
     {
         return (new Quote())->random(strval($request->session()->has('unread_quotes')));
+    } 
+
+    /**
+     * Return All Quotes that Match Search Term
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function search(Request $request)
+    {
+        return (new Quote())->search($request->query('q'));
     } 
 }
