@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DateTime;
 
-use App\Services\Quote;
+use App\Quote;
 
 class QuoteController extends Controller
 {
+
+    /**
+     * Saving Quote Class to Variable
+     * 
+     */
+    public function __construct() {
+        $this->quote = new Quote();
+    }
 
     /**
      * Return Home Page of Application
@@ -27,7 +35,7 @@ class QuoteController extends Controller
      */
     public function getQuotes()
     {
-        return (new Quote())->getQuotes();
+        return $this->quote->getQuotes();
     } 
 
     /**
@@ -49,7 +57,7 @@ class QuoteController extends Controller
             ]            
         ];
 
-        return (new Quote())->setQuotes($replacement);
+        return $this->quote->setQuotes($replacement);
     }
 
     /**
@@ -60,7 +68,7 @@ class QuoteController extends Controller
      */
     public function quotd(Request $request)
     {
-        return (new Quote())->quotd(date('Y-m-d', strtotime($request->query('d'))));
+        return $this->quote->quotd(date('Y-m-d', strtotime($request->query('d'))));
     } 
 
     /**
@@ -71,7 +79,7 @@ class QuoteController extends Controller
      */
     public function random(Request $request)
     {
-        return (new Quote())->random(strval($request->session()->has('unread_quotes')));
+        return $this->quote->random(strval($request->session()->has('unread_quotes')));
     } 
 
     /**
@@ -82,6 +90,6 @@ class QuoteController extends Controller
      */
     public function search(Request $request)
     {
-        return (new Quote())->search($request->query('q'));
+        return $this->quote->search($request->query('q'));
     } 
 }
