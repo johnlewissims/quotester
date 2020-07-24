@@ -1,9 +1,44 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+    background: #EFF4F2;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    #app {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.quote {
+    h3 {
+        color: $brand-text;
+        font-size: 40px;
+    }
+    h5 {
+        color: $brand-primary;
+        text-align: right;
+        font-size: 25px;
+        padding-top: 15px;
+        padding-right: 15px;
+    }
+}
+
+.btn {
+    font-family: "Raleway", sans-serif;;
+    transition: all .2s ease;
+}

@@ -11941,7 +11941,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
 
 var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */]);
 
-Vue.component('example', __webpack_require__(40));
+Vue.component('quote', __webpack_require__(65));
 
 var app = new Vue({
     el: '#app',
@@ -12796,42 +12796,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = {
-  mounted: function mounted() {
-    this.$store.dispatch("allCategoryFromDatabase");
-  },
-
-  computed: {
-    getAllCategory: function getAllCategory() {
-      return this.$store.getters.getCategoryFormGetters;
-    }
-  }
-
-};
-
-/***/ }),
+/* 32 */,
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12889,35 +12854,52 @@ window.axios.defaults.headers.common = {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = {
 
-      state: {
-            category: ['Hello', 'World']
-      },
+       state: {
+              quotes: [],
+              selectedQuote: []
+       },
 
-      getters: {
-            getCategoryFormGetters: function getCategoryFormGetters(state) {
-                  return state.category;
-            }
-      },
+       getters: {
+              getQuotes: function getQuotes(state) {
+                     return state.quotes;
+              },
+              getSelectedQuote: function getSelectedQuote(state) {
+                     return state.selectedQuote;
+              }
+       },
 
-      actions: {
-            allCategoryFromDatabase: function allCategoryFromDatabase(context) {
-                  console.log('hello world');
-                  //   axios.get("api/category")
-                  //        .then((response)=>{
-                  //           console.log(response.data.categories)
-                  //           context.commit("categories",response.data.categories)
-                  //        })
-                  //        .catch(()=>{   
-                  //           console.log("Error") 
-                  //        })
-            }
-      },
+       actions: {
+              getAllQuotes: function getAllQuotes(context) {
+                     axios.get("/quotes/").then(function (response) {
+                            context.commit("quotes", response.data);
+                     }).catch(function () {
+                            console.log("Error");
+                     });
+              },
+              getQuoteOfTheDay: function getQuoteOfTheDay(context) {
+                     axios.get("/quotes/quotd").then(function (response) {
+                            context.commit("selectedQuote", response.data);
+                     }).catch(function () {
+                            console.log("Error");
+                     });
+              },
+              getRandomQuote: function getRandomQuote(context) {
+                     axios.get("/quotes/random").then(function (response) {
+                            context.commit("selectedQuote", response.data);
+                     }).catch(function () {
+                            console.log("Error");
+                     });
+              }
+       },
 
-      mutations: {
-            categories: function categories(state, data) {
-                  return state.category = data;
-            }
-      }
+       mutations: {
+              quotes: function quotes(state, data) {
+                     return state.quotes = data;
+              },
+              selectedQuote: function selectedQuote(state, data) {
+                     return state.selectedQuote = data;
+              }
+       }
 };
 
 /***/ }),
@@ -15508,20 +15490,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(37)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 36 */,
 /* 37 */
 /***/ (function(module, exports) {
 
@@ -32940,44 +32909,7 @@ module.exports = function() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(2)))
 
 /***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(43)
-
-var Component = __webpack_require__(41)(
-  /* script */
-  __webpack_require__(32),
-  /* template */
-  __webpack_require__(42),
-  /* scopeId */
-  "data-v-478a90e8",
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/johnsims/Sites/quotester/resources/assets/js/components/Example.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-478a90e8", Component.options)
-  } else {
-    hotAPI.reload("data-v-478a90e8", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 40 */,
 /* 41 */
 /***/ (function(module, exports) {
 
@@ -33031,63 +32963,8 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
-    staticClass: "content"
-  }, [_c('div', {
-    staticClass: "container-fluid"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("Select")]), _vm._v(" "), _c('select', [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Select Category")]), _vm._v(" "), _vm._l((_vm.getAllCategory), function(category) {
-    return _c('option', {
-      domProps: {
-        "value": category
-      }
-    }, [_vm._v("\n                  " + _vm._s(category) + "\n              ")])
-  })], 2)])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-478a90e8", module.exports)
-  }
-}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(36);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(44)("0d428014", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-478a90e8&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Example.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-478a90e8&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Example.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 42 */,
+/* 43 */,
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46611,6 +46488,393 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttons_Random__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buttons_Random___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__buttons_Random__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__buttons_Quotd__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__buttons_Quotd___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__buttons_Quotd__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  components: {
+    RandomButton: __WEBPACK_IMPORTED_MODULE_0__buttons_Random___default.a, QuotdButton: __WEBPACK_IMPORTED_MODULE_1__buttons_Quotd___default.a
+  },
+  mounted: function mounted() {
+    this.$store.dispatch("getAllQuotes");
+    this.$store.dispatch("getQuoteOfTheDay");
+  },
+
+  computed: {
+    quotes: function quotes() {
+      return this.$store.getters.getQuotes;
+    },
+    selectedQuote: function selectedQuote() {
+      return this.$store.getters.getSelectedQuote;
+    }
+  }
+};
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(37)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(67)
+
+var Component = __webpack_require__(41)(
+  /* script */
+  __webpack_require__(63),
+  /* template */
+  __webpack_require__(66),
+  /* scopeId */
+  "data-v-33db267a",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/johnsims/Sites/quotester/resources/assets/js/components/Quote.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Quote.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33db267a", Component.options)
+  } else {
+    hotAPI.reload("data-v-33db267a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "wrapper"
+  }, [_c('div', {
+    staticClass: "quote"
+  }, [_c('h3', [_vm._v(_vm._s(_vm.selectedQuote.quote))]), _vm._v(" "), _c('h5', [_vm._v(_vm._s(_vm.selectedQuote.author))])]), _vm._v(" "), _c('RandomButton'), _vm._v(" "), _c('QuotdButton')], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-33db267a", module.exports)
+  }
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(64);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(44)("20fe1224", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-33db267a&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Quote.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-33db267a&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Quote.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  methods: {
+    getRandomQuote: function getRandomQuote() {
+      this.$store.dispatch("getRandomQuote");
+    }
+  }
+};
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(37)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(72)
+
+var Component = __webpack_require__(41)(
+  /* script */
+  __webpack_require__(68),
+  /* template */
+  __webpack_require__(71),
+  /* scopeId */
+  "data-v-7c524483",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/johnsims/Sites/quotester/resources/assets/js/components/buttons/Random.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Random.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7c524483", Component.options)
+  } else {
+    hotAPI.reload("data-v-7c524483", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "random btn btn-info",
+    on: {
+      "click": _vm.getRandomQuote
+    }
+  }, [_vm._v("Random Quote")])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7c524483", module.exports)
+  }
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(44)("12f31742", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7c524483&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Random.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7c524483&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Random.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+  methods: {
+    getQuoteOfTheDay: function getQuoteOfTheDay() {
+      this.$store.dispatch("getQuoteOfTheDay");
+    }
+  }
+};
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(37)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(77)
+
+var Component = __webpack_require__(41)(
+  /* script */
+  __webpack_require__(73),
+  /* template */
+  __webpack_require__(76),
+  /* scopeId */
+  "data-v-6935ffeb",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/johnsims/Sites/quotester/resources/assets/js/components/buttons/Quotd.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Quotd.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6935ffeb", Component.options)
+  } else {
+    hotAPI.reload("data-v-6935ffeb", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "quotd btn btn-info",
+    on: {
+      "click": _vm.getQuoteOfTheDay
+    }
+  }, [_vm._v("Quote of the Day")])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6935ffeb", module.exports)
+  }
+}
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(74);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(44)("7b4d8292", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6935ffeb&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Quotd.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6935ffeb&scoped=true!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Quotd.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

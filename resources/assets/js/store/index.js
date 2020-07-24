@@ -1,32 +1,55 @@
 export default {
 
 	state: {
-       category: ['Hello', 'World']
+              quotes: [],
+              selectedQuote: [],
 	},
 
 	getters: {
-       getCategoryFormGetters(state){
-          return state.category
-       }
+              getQuotes(state){
+                     return state.quotes
+              },
+              getSelectedQuote(state){
+                     return state.selectedQuote
+              }
 	},
 
 	actions: {
-       allCategoryFromDatabase(context){
-            console.log('hello world')
-        //   axios.get("api/category")
-        //        .then((response)=>{
-        //           console.log(response.data.categories)
-        //           context.commit("categories",response.data.categories)
-        //        })
-        //        .catch(()=>{   
-        //           console.log("Error") 
-        //        })
-       }
+              getAllQuotes(context){
+                     axios.get("/quotes/")
+                     .then((response)=>{
+                            context.commit("quotes",response.data)
+                     })
+                     .catch(()=>{   
+                            console.log("Error") 
+                     })
+              },
+              getQuoteOfTheDay(context){
+                     axios.get("/quotes/quotd")
+                     .then((response)=>{
+                            context.commit("selectedQuote",response.data)
+                     })
+                     .catch(()=>{   
+                            console.log("Error") 
+                     })
+              },
+              getRandomQuote(context){
+                     axios.get("/quotes/random")
+                     .then((response)=>{
+                            context.commit("selectedQuote",response.data)
+                     })
+                     .catch(()=>{   
+                            console.log("Error") 
+                     })
+              }
 	},
 
 	mutations: {
-       categories(state,data) {
-          return state.category = data
-       }
+              quotes(state,data) {
+                     return state.quotes = data
+              },
+              selectedQuote(state,data) {
+                     return state.selectedQuote = data
+              }
 	}
 }

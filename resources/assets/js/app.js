@@ -17,7 +17,7 @@ const store = new Vuex.Store(
     storeData
 )
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('quote', require('./components/Quote.vue'));
 
 const app = new Vue({
     el: '#app',
