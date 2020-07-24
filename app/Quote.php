@@ -48,12 +48,15 @@ class Quote
         // Sanity Check
         // Set Default Date to Today
         if($date == '1970-01-01') {
-            $date = date("j");
+            //Get Day of the Month
+            $day = date("j");
+        } else {
+            //Get Day of the Month
+            $day = date("j", strtotime($date));
         }
 
-        //Get Day of the Month
-        $day = date("j", strtotime($date));
         return $this->quotes[$day];
+        
     }
 
     /**
