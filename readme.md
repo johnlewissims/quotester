@@ -1,6 +1,6 @@
 ## Quotester Documentation
 
-Quotester is a small web app developed in Laravel and Vue, designed to make finding inspiring and isightful quotes a breeze. Check out the live demo [here](http://54.81.10.117/).
+Quotester is a small web app developed in Laravel and Vue, designed to make finding inspiring and insightful quotes a breeze. Check out the live demo [here](http://54.81.10.117/).
 
 ### Routes
 
