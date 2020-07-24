@@ -38,7 +38,10 @@ body {
     }
 }
 
-.btn {
-    font-family: "Raleway", sans-serif;;
-    transition: all .2s ease;
+.btn, .btn:hover, .btn:focus, .btn:active {
+    font-family: "Raleway", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 15px;
 }

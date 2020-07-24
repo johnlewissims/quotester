@@ -46606,7 +46606,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "wrapper"
   }, [_c('div', {
     staticClass: "quote"
-  }, [_c('h3', [_vm._v(_vm._s(_vm.selectedQuote.quote))]), _vm._v(" "), _c('h5', [_vm._v(_vm._s(_vm.selectedQuote.author))])]), _vm._v(" "), _c('RandomButton'), _vm._v(" "), _c('QuotdButton')], 1)
+  }, [_c('h3', [_vm._v(_vm._s(_vm.selectedQuote.text))]), _vm._v(" "), _c('h5', [_vm._v(_vm._s(_vm.selectedQuote.author))])]), _vm._v(" "), _c('RandomButton'), _vm._v(" "), _c('QuotdButton')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

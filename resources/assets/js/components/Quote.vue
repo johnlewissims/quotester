@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="quote">
-      <h3>{{selectedQuote.quote}}</h3>
+      <h3>{{selectedQuote.text}}</h3>
       <h5>{{selectedQuote.author}}</h5>
     </div>
     <RandomButton></RandomButton>

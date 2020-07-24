@@ -97,7 +97,7 @@ class Quote
         // Filters Array by Search Term
         // If String is Found in Either Author or Quote
         $filteredArray = array_filter($this->quotes, function ($var) use ($word) {
-            return (stripos($var['quote'], $word) !== false || stripos($var['author'], $word) !== false);
+            return (stripos($var['text'], $word) !== false || stripos($var['author'], $word) !== false);
         });
         return $filteredArray;
     }   
