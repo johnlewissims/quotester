@@ -1,41 +1,53 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Quotester Documentation
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Quotester is a small web app developed in Laravel and Vue, designed to make finding inspiring and isightful quotes a breeze. Check out the live demo [here](http://54.81.10.117/).
 
-## About Laravel
+### Routes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+**Random**
+/quotes/random
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Quote of the Day**
+/quotes/quotd
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+You can change the date by supplying a date parameter (ex. /quotes/quotd?d=10-2-2020).
 
-## Learning Laravel
+**Search**
+/quotes/search 
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+Pass the term to search for in the q parameter (ex. /quotes/search?q=bugs)
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+### Installation
 
-## Contributing
+Ensure that your machine is running PHP 5.6. If you have Valet running on your machine, simply do the following.
+- Clone the repo to your parked folder.
+- Run `composer install`
+- Run `npm install`
+- And finally `npm run watch`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### File Structure
+To make the project a little easier to navigate, I've included this guide as a roadmap. 
 
-## Security Vulnerabilities
+** Routes **
+All routes are kept in...
+routes/web.php
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+** Model **
+The Quote Class acts as the application's only model.
+app/Quote.php
 
-## License
+** Controller **
+The only Controller in the App is the QuoteController.  All business logic is performed by the Quote Class.
+app/Http/Controllers/QuoteController.php
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-# quotester
+** Views **
+Quotester uses the Vue.js framework to generate the frontend of the App. The main component of the Vue App is Quote.vue. Quote.vue uses two smaller components as buttons for calling the 'Quote of the Day' and 'Random Quote' functions.
+resources/views/home.blade.php
+resources/views/layouts/app.blade.php
+resources/assets/js/components/Quote.vue
+resources/assets/js/components/buttons/Quotd.vue
+resources/assets/js/components/buttons/Random.vue
+
+** Vuex State **
+State is managed in the store folder. 
+resources/assets/js/store/index.js

@@ -18,13 +18,9 @@ export default {
     RandomButton, QuotdButton
   },
   mounted() {
-    this.$store.dispatch("getAllQuotes")
     this.$store.dispatch("getQuoteOfTheDay")
   },
   computed: {
-    quotes(){
-      return this.$store.getters.getQuotes
-    },
     selectedQuote(){
       return this.$store.getters.getSelectedQuote
     }
